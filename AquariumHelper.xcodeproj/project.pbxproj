@@ -13,6 +13,8 @@
 		EBDF11CF200834FC00F120AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBDF11CE200834FC00F120AE /* Assets.xcassets */; };
 		EBDF11D2200834FC00F120AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBDF11D0200834FC00F120AE /* LaunchScreen.storyboard */; };
 		EBDF11D5200834FC00F120AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDF11D4200834FC00F120AE /* main.m */; };
+		EBDF11DD20083B4800F120AE /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EBDF11DB20083B4800F120AE /* Model.xcdatamodeld */; };
+		EBF9AD0E20413557001F1E2C /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF9AD0D20413557001F1E2C /* DataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,9 @@
 		EBDF11D1200834FC00F120AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EBDF11D3200834FC00F120AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBDF11D4200834FC00F120AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EBDF11DC20083B4800F120AE /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		EBF9AD0C20413557001F1E2C /* DataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
+		EBF9AD0D20413557001F1E2C /* DataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +72,9 @@
 				EBDF11D0200834FC00F120AE /* LaunchScreen.storyboard */,
 				EBDF11D3200834FC00F120AE /* Info.plist */,
 				EBDF11D4200834FC00F120AE /* main.m */,
+				EBDF11DB20083B4800F120AE /* Model.xcdatamodeld */,
+				EBF9AD0C20413557001F1E2C /* DataController.h */,
+				EBF9AD0D20413557001F1E2C /* DataController.m */,
 			);
 			path = AquariumHelper;
 			sourceTree = "<group>";
@@ -145,6 +153,8 @@
 				EBDF11CA200834FC00F120AE /* ViewController.m in Sources */,
 				EBDF11D5200834FC00F120AE /* main.m in Sources */,
 				EBDF11C7200834FC00F120AE /* AppDelegate.m in Sources */,
+				EBF9AD0E20413557001F1E2C /* DataController.m in Sources */,
+				EBDF11DD20083B4800F120AE /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,9 +291,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A5QCR79C6D;
 				INFOPLIST_FILE = AquariumHelper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kenzheng.AquariumHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -295,9 +307,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A5QCR79C6D;
 				INFOPLIST_FILE = AquariumHelper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kenzheng.AquariumHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -324,6 +338,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EBDF11DB20083B4800F120AE /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EBDF11DC20083B4800F120AE /* Model.xcdatamodel */,
+			);
+			currentVersion = EBDF11DC20083B4800F120AE /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EBDF11BA200834FC00F120AE /* Project object */;
 }
