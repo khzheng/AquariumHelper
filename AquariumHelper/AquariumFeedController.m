@@ -32,6 +32,9 @@
     
     self.title = [NSString stringWithFormat:@"%@ (%.2f L)", self.aquarium.name, self.aquarium.sizeLiters];
     
+    UIBarButtonItem *addActivityButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addActivity:)];
+    self.navigationItem.rightBarButtonItem = addActivityButton;
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -67,6 +70,42 @@
     });
     
     return [_dateFormatter stringFromDate:date];
+}
+
+#pragma mark - Actions
+
+- (IBAction)addActivity:(id)sender {
+    const NSInteger activityNameTag = 23;
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"New Activity" message:@"Name your activity" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textfield) {
+        textfield.tag = activityNameTag;
+        textfield.placeholder = @"Feed fish";
+    }];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSArray *textfields = alertController.textFields;
+        for (UITextField *textfield in textfields) {
+            if (textfield.tag == activityNameTag) {
+                NSString *activityName = textfield.text;
+                if ([activityName length] > 0) {
+                    [self.dataController addActivity:activityName toAquarium:self.aquarium];
+                    [self reloadFeed];
+                    [self.tableView reloadData];
+                } else {
+                    [self presentViewController:alertController animated:YES completion:nil];
+                }
+                
+                break;
+            }
+        }
+    }];
+    [alertController addAction:okAction];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource

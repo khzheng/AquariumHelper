@@ -90,6 +90,15 @@
     [self save];
 }
 
+- (void)addActivity:(NSString *)name toAquarium:(Aquarium *)aquarium {
+    Activity *newActivity = [[Activity alloc] initWithContext:self.persistentContainer.viewContext];
+    newActivity.name = name;
+    
+    [aquarium addActivityObject:newActivity];
+    
+    [self save];
+}
+
 - (void)printAllAquariums {
     NSArray *aquariums = [self aquariums];
     NSLog(@"Aquariums:\n");

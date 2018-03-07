@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class Aquarium;
 @class Activity;
 
 @interface DataController : NSObject
@@ -16,5 +17,6 @@
 
 - (void)addAquarium:(NSString *)name sizeInLiters:(float)sizeInLiters;
 - (void)completedActivity:(Activity *)activity;
+- (void)addActivity:(NSString *)name toAquarium:(Aquarium *)aquarium;
 
 @end
