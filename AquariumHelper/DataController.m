@@ -31,13 +31,13 @@
                 NSLog(@"Core Data loaded successfully.");
             }
             
-//            Aquarium *aquarium = [[Aquarium alloc] initWithContext:self.persistentContainer.viewContext];
-//            aquarium.name = @"Nemo";
+            Aquarium *aquarium = [[Aquarium alloc] initWithContext:self.persistentContainer.viewContext];
+            aquarium.name = @"Nemo";
 //
-//            AquariumEntry *entry = [[AquariumEntry alloc] initWithContext:self.persistentContainer.viewContext];
-//            entry.name = @"Change water";
+            AquariumEntry *entry = [[AquariumEntry alloc] initWithContext:self.persistentContainer.viewContext];
+            entry.name = @"Change water";
 //
-//            [aquarium addEntriesObject:entry];
+            [aquarium addEntriesObject:entry];
 //            [self save];
             
 //            [self deleteAllAquariums];

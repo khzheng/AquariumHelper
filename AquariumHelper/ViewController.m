@@ -13,6 +13,7 @@
 
 @interface ViewController () <UITableViewDataSource>
 
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) Aquarium *aquarium;
 @property (nonatomic, strong) NSArray *entries;
 
@@ -20,13 +21,22 @@
 
 @implementation ViewController
 
+- (void)loadView {
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.view = self.tableView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Aquariums";
+    
     DataController *dataController = [[DataController alloc] init];
     NSArray *aquariums = dataController.aquariums;
-    self.aquarium = aquariums[0];
-    self.entries = [self.aquarium.entries allObjects];
+    if ([aquariums count] > 0) {
+        self.aquarium = aquariums[0];
+        self.entries = [self.aquarium.entries allObjects];
+    }
     
     self.tableView.dataSource = self;
     [self.tableView reloadData];
