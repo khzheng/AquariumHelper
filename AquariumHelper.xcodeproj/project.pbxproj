@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EBDF11C7200834FC00F120AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDF11C6200834FC00F120AE /* AppDelegate.m */; };
-		EBDF11CA200834FC00F120AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDF11C9200834FC00F120AE /* ViewController.m */; };
+		EBDF11CA200834FC00F120AE /* AquariumsController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDF11C9200834FC00F120AE /* AquariumsController.m */; };
 		EBDF11CF200834FC00F120AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBDF11CE200834FC00F120AE /* Assets.xcassets */; };
 		EBDF11D2200834FC00F120AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBDF11D0200834FC00F120AE /* LaunchScreen.storyboard */; };
 		EBDF11D5200834FC00F120AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDF11D4200834FC00F120AE /* main.m */; };
@@ -20,13 +20,13 @@
 		EBDF11C2200834FC00F120AE /* AquariumHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AquariumHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBDF11C5200834FC00F120AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EBDF11C6200834FC00F120AE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EBDF11C8200834FC00F120AE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EBDF11C9200834FC00F120AE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EBDF11C9200834FC00F120AE /* AquariumsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AquariumsController.m; sourceTree = "<group>"; };
 		EBDF11CE200834FC00F120AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBDF11D1200834FC00F120AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EBDF11D3200834FC00F120AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBDF11D4200834FC00F120AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EBDF11DC20083B4800F120AE /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		EBF22956204F8F9E00C9EFAD /* AquariumsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AquariumsController.h; sourceTree = "<group>"; };
 		EBF9AD0C20413557001F1E2C /* DataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
 		EBF9AD0D20413557001F1E2C /* DataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,8 +63,8 @@
 			children = (
 				EBDF11C5200834FC00F120AE /* AppDelegate.h */,
 				EBDF11C6200834FC00F120AE /* AppDelegate.m */,
-				EBDF11C8200834FC00F120AE /* ViewController.h */,
-				EBDF11C9200834FC00F120AE /* ViewController.m */,
+				EBF22956204F8F9E00C9EFAD /* AquariumsController.h */,
+				EBDF11C9200834FC00F120AE /* AquariumsController.m */,
 				EBDF11CE200834FC00F120AE /* Assets.xcassets */,
 				EBDF11D0200834FC00F120AE /* LaunchScreen.storyboard */,
 				EBDF11D3200834FC00F120AE /* Info.plist */,
@@ -146,7 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBDF11CA200834FC00F120AE /* ViewController.m in Sources */,
+				EBDF11CA200834FC00F120AE /* AquariumsController.m in Sources */,
 				EBDF11D5200834FC00F120AE /* main.m in Sources */,
 				EBDF11C7200834FC00F120AE /* AppDelegate.m in Sources */,
 				EBF9AD0E20413557001F1E2C /* DataController.m in Sources */,
