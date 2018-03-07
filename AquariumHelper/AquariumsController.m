@@ -9,6 +9,7 @@
 #import "AquariumsController.h"
 #import "DataController.h"
 #import "Aquarium+CoreDataClass.h"
+#import "AquariumFeedController.h"
 
 @interface AquariumsController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -59,9 +60,13 @@
     NSString *cellIdentifier = @"cellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = ((Aquarium *)self.aquariums[indexPath.row]).name;
+    
+    Aquarium *aquarium = self.aquariums[indexPath.row];
+    
+    cell.textLabel.text = aquarium.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f L", aquarium.sizeLiters];
     
     return cell;
 }
@@ -77,7 +82,10 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@", self.aquariums[indexPath.row]);
+    Aquarium *aquarium = self.aquariums[indexPath.row];
+    AquariumFeedController *vc = [[AquariumFeedController alloc] init];
+    vc.aquarium = aquarium;
+    [self.navigationController pushViewController:vc animated:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

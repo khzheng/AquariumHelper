@@ -13,6 +13,7 @@
 		EBDF11D2200834FC00F120AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBDF11D0200834FC00F120AE /* LaunchScreen.storyboard */; };
 		EBDF11D5200834FC00F120AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDF11D4200834FC00F120AE /* main.m */; };
 		EBDF11DD20083B4800F120AE /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EBDF11DB20083B4800F120AE /* Model.xcdatamodeld */; };
+		EBF22959204F920800C9EFAD /* AquariumFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF22958204F920800C9EFAD /* AquariumFeedController.m */; };
 		EBF9AD0E20413557001F1E2C /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBF9AD0D20413557001F1E2C /* DataController.m */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,8 @@
 		EBDF11D4200834FC00F120AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EBDF11DC20083B4800F120AE /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		EBF22956204F8F9E00C9EFAD /* AquariumsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AquariumsController.h; sourceTree = "<group>"; };
+		EBF22958204F920800C9EFAD /* AquariumFeedController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AquariumFeedController.m; sourceTree = "<group>"; };
+		EBF2295A204F964D00C9EFAD /* AquariumFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AquariumFeedController.h; sourceTree = "<group>"; };
 		EBF9AD0C20413557001F1E2C /* DataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
 		EBF9AD0D20413557001F1E2C /* DataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +75,8 @@
 				EBDF11DB20083B4800F120AE /* Model.xcdatamodeld */,
 				EBF9AD0C20413557001F1E2C /* DataController.h */,
 				EBF9AD0D20413557001F1E2C /* DataController.m */,
+				EBF2295A204F964D00C9EFAD /* AquariumFeedController.h */,
+				EBF22958204F920800C9EFAD /* AquariumFeedController.m */,
 			);
 			path = AquariumHelper;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 				EBDF11C7200834FC00F120AE /* AppDelegate.m in Sources */,
 				EBF9AD0E20413557001F1E2C /* DataController.m in Sources */,
 				EBDF11DD20083B4800F120AE /* Model.xcdatamodeld in Sources */,
+				EBF22959204F920800C9EFAD /* AquariumFeedController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

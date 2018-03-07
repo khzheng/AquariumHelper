@@ -41,7 +41,7 @@
 //            [self save];
             
 //            [self deleteAllAquariums];
-            [self printAllAquariums];
+//            [self printAllAquariums];
         }];
     }
     
