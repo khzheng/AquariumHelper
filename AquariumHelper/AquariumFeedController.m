@@ -9,12 +9,14 @@
 #import "AquariumFeedController.h"
 #import "Aquarium+CoreDataClass.h"
 #import "Activity+CoreDataClass.h"
+#import "Event+CoreDataClass.h"
 #import "DataController.h"
 
 @interface AquariumFeedController () < UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *activity;
+@property (nonatomic, strong) NSArray *latestEvents;
 
 @end
 
@@ -30,11 +32,41 @@
     
     self.title = [NSString stringWithFormat:@"%@ (%.2f L)", self.aquarium.name, self.aquarium.sizeLiters];
     
-    self.activity = [self.aquarium.activity allObjects];
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    [self reloadFeed];
     [self.tableView reloadData];
+}
+
+- (void)reloadFeed {
+    self.activity = [self.aquarium.activity allObjects];
+    
+    // find the latest event in each activity
+    NSMutableArray *latestEvents = [NSMutableArray arrayWithCapacity:[self.activity count]];
+    for (Activity *activity in self.activity) {
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
+        NSArray *sortDescriptors = @[sort];
+        NSArray *sortedEvents = [activity.events sortedArrayUsingDescriptors:sortDescriptors];
+        if ([sortedEvents firstObject])
+            [latestEvents addObject:[sortedEvents firstObject]];
+        else    // activity has no events
+            [latestEvents addObject:[NSNull null]];
+    }
+    self.latestEvents = [NSArray arrayWithArray:latestEvents];
+}
+
+- (NSString *)stringForDate:(NSDate *)date {
+    static NSDateFormatter *_dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.dateStyle = NSDateFormatterShortStyle;
+        _dateFormatter.timeStyle = NSDateFormatterShortStyle;
+        _dateFormatter.timeZone = [NSTimeZone defaultTimeZone];
+    });
+    
+    return [_dateFormatter stringFromDate:date];
 }
 
 #pragma mark - UITableViewDataSource
@@ -43,9 +75,15 @@
     NSString *cellIdentifier = @"cellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDetailButton;
     }
-    cell.textLabel.text = ((Activity *)self.activity[indexPath.row]).name;
+    
+    Activity *activity = self.activity[indexPath.row];
+    Event *latestEvent = self.latestEvents[indexPath.row];
+    
+    cell.textLabel.text = activity.name;
+    cell.detailTextLabel.text = [latestEvent isEqual:[NSNull null]] ? @"" : [self stringForDate:latestEvent.date];
 
     return cell;
 }
@@ -64,7 +102,12 @@
     Activity *activity = self.activity[indexPath.row];
     [self.dataController completedActivity:activity];
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self reloadFeed];
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
 @end
