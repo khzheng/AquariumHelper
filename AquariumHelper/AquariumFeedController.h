@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class DataController;
 @class Aquarium;
 
 @interface AquariumFeedController : UIViewController
 
 @property (nonatomic, strong) Aquarium *aquarium;
+@property (nonatomic, strong) DataController *dataController;
 
 @end

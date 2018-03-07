@@ -9,7 +9,8 @@
 #import <CoreData/CoreData.h>
 #import "DataController.h"
 #import "Aquarium+CoreDataClass.h"
-#import "AquariumEntry+CoreDataClass.h"
+#import "Activity+CoreDataClass.h"
+#import "Event+CoreDataClass.h"
 
 @interface DataController ()
 
@@ -41,7 +42,7 @@
 //            [self save];
             
 //            [self deleteAllAquariums];
-//            [self printAllAquariums];
+            [self printAllAquariums];
         }];
     }
     
@@ -73,10 +74,19 @@
     aquarium.name = name;
     aquarium.sizeLiters = sizeInLiters;
     
-    AquariumEntry *entry = [[AquariumEntry alloc] initWithContext:self.persistentContainer.viewContext];
-    entry.name = @"Change water";
+    Activity *activity = [[Activity alloc] initWithContext:self.persistentContainer.viewContext];
+    activity.name = @"Water change";
     
-    [aquarium addEntriesObject:entry];
+    [aquarium addActivityObject:activity];
+    [self save];
+}
+
+- (void)completedActivity:(Activity *)activity {
+    Event *event = [[Event alloc] initWithContext:self.persistentContainer.viewContext];
+    event.date = [NSDate date];
+    
+    [activity addEventsObject:event];
+    
     [self save];
 }
 
@@ -84,19 +94,22 @@
     NSArray *aquariums = [self aquariums];
     NSLog(@"Aquariums:\n");
     for (Aquarium *aquarium in aquariums) {
-        NSLog(@"%@\n", aquarium.name);
-        NSArray *entries = [aquarium.entries allObjects];
-        for (AquariumEntry *entry in entries) {
-            NSLog(@"%@", entry.name);
+        NSLog(@"\t%@\n", aquarium.name);
+        NSArray *activities = [aquarium.activity allObjects];
+        for (Activity *activity in activities) {
+            NSLog(@"\t\t%@", activity.name);
+            NSArray *events = [activity.events allObjects];
+            for (Event *event in events) {
+                NSLog(@"\t\t\t%@", event.date);
+            }
         }
     }
 }
 
 - (void)deleteAllAquariums {
     NSArray *aquariums = [self aquariums];
-    for (Aquarium *aquarium in aquariums) {
+    for (Aquarium *aquarium in aquariums)
         [self.persistentContainer.viewContext deleteObject:aquarium];
-    }
     
     [self save];
     NSLog(@"Deleted all aquariums");

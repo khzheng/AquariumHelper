@@ -85,6 +85,7 @@
     Aquarium *aquarium = self.aquariums[indexPath.row];
     AquariumFeedController *vc = [[AquariumFeedController alloc] init];
     vc.aquarium = aquarium;
+    vc.dataController = self.dataController;
     [self.navigationController pushViewController:vc animated:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

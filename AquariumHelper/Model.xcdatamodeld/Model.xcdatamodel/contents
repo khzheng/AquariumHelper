@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Activity" representedClassName="Activity" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="aquarium" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Aquarium" inverseName="activity" inverseEntity="Aquarium" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="activity" inverseEntity="Event" syncable="YES"/>
+    </entity>
     <entity name="Aquarium" representedClassName="Aquarium" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sizeLiters" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AquariumEntry" inverseName="aquarium" inverseEntity="AquariumEntry" syncable="YES"/>
+        <relationship name="activity" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Activity" inverseName="aquarium" inverseEntity="Activity" syncable="YES"/>
     </entity>
-    <entity name="AquariumEntry" representedClassName="AquariumEntry" syncable="YES" codeGenerationType="class">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="aquarium" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Aquarium" inverseName="entries" inverseEntity="Aquarium" syncable="YES"/>
+    <entity name="Event" representedClassName="Event" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Activity" inverseName="events" inverseEntity="Activity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Aquarium" positionX="250" positionY="-90" width="128" height="88"/>
-        <element name="AquariumEntry" positionX="-63" positionY="9" width="128" height="73"/>
+        <element name="Aquarium" positionX="250" positionY="-90" width="128" height="90"/>
+        <element name="Activity" positionX="-63" positionY="9" width="128" height="90"/>
+        <element name="Event" positionX="90" positionY="-18" width="128" height="75"/>
     </elements>
 </model>

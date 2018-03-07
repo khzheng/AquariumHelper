@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class Activity;
+
 @interface DataController : NSObject
 
 @property (nonatomic, readonly) NSArray *aquariums;
 
 - (void)addAquarium:(NSString *)name sizeInLiters:(float)sizeInLiters;
+- (void)completedActivity:(Activity *)activity;
 
 @end
