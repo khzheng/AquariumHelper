@@ -11,6 +11,7 @@
 #import "Activity+CoreDataClass.h"
 #import "Event+CoreDataClass.h"
 #import "DataController.h"
+#import "EventsController.h"
 
 @interface AquariumFeedController () < UITableViewDataSource, UITableViewDelegate>
 
@@ -30,7 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = [NSString stringWithFormat:@"%@ (%.2f L)", self.aquarium.name, self.aquarium.sizeLiters];
+//    self.title = [NSString stringWithFormat:@"%@ (%.2f L)", self.aquarium.name, self.aquarium.sizeLiters];
+    self.title = self.aquarium.name;
     
     UIBarButtonItem *addActivityButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addActivity:)];
     self.navigationItem.rightBarButtonItem = addActivityButton;
@@ -146,7 +148,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    EventsController *vc = [[EventsController alloc] init];
+    vc.activity = self.activity[indexPath.row];
     
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
