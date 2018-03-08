@@ -15,6 +15,7 @@
 
 @property (nonatomic, readonly) NSArray *aquariums;
 
+- (void)save;
 - (void)addAquarium:(NSString *)name sizeInLiters:(float)sizeInLiters;
 - (void)completedActivity:(Activity *)activity;
 - (void)addActivity:(NSString *)name toAquarium:(Aquarium *)aquarium;

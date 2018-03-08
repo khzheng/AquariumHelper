@@ -13,7 +13,7 @@
 #import "DataController.h"
 #import "EventsController.h"
 
-@interface AquariumFeedController () < UITableViewDataSource, UITableViewDelegate>
+@interface AquariumFeedController () < UITableViewDataSource, UITableViewDelegate, EventsControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *activity;
@@ -150,8 +150,17 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     EventsController *vc = [[EventsController alloc] init];
     vc.activity = self.activity[indexPath.row];
+    vc.dataController = self.dataController;
+    vc.delegate = self;
     
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - EventControllerDelegate
+
+- (void)eventsUpdated {
+    [self reloadFeed];
+    [self.tableView reloadData];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "EventsController.h"
 #import "Activity+CoreDataClass.h"
 #import "Event+CoreDataClass.h"
+#import "DataController.h"
 
 @interface EventsController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -63,7 +64,26 @@
 #pragma mark - Actions
 
 - (IBAction)deleteEventsAction:(id)sender {
+    NSArray *selectedIndexPaths = self.tableView.indexPathsForSelectedRows;
     
+    [self.tableView beginUpdates];
+    NSMutableSet *eventsToDelete = [NSMutableSet set];
+    for (NSIndexPath *indexPath in selectedIndexPaths) {
+        Event *event = self.events[indexPath.row];
+        [eventsToDelete addObject:event];
+    }
+    [self.activity removeEvents:eventsToDelete];
+    [self.dataController save];
+    [self reloadEvents];
+    
+    [self.tableView deleteRowsAtIndexPaths:selectedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+    
+    self.navigationItem.rightBarButtonItem.enabled = [self.tableView.indexPathsForSelectedRows count] > 0;
+    
+    if ([self.delegate respondsToSelector:@selector(eventsUpdated)]) {
+        [self.delegate eventsUpdated];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -96,7 +116,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.navigationItem.rightBarButtonItem.enabled = [tableView.indexPathsForSelectedRows count] != 0;
+    self.navigationItem.rightBarButtonItem.enabled = [tableView.indexPathsForSelectedRows count] > 0;
 }
 
 @end
