@@ -10,7 +10,7 @@
 #import "Activity+CoreDataClass.h"
 #import "Event+CoreDataClass.h"
 
-@interface EventsController () <UITableViewDataSource>
+@interface EventsController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *events;
@@ -28,7 +28,14 @@
     [super viewDidLoad];
     
     self.title = self.activity.name;
+    
+    UIBarButtonItem *deleteEventsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteEventsAction:)];
+    self.navigationItem.rightBarButtonItem = deleteEventsButton;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    self.tableView.allowsMultipleSelection = YES;
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     
     [self reloadEvents];
     [self.tableView reloadData];
@@ -51,6 +58,12 @@
     });
     
     return [_dateFormatter stringFromDate:date];
+}
+
+#pragma mark - Actions
+
+- (IBAction)deleteEventsAction:(id)sender {
+    
 }
 
 #pragma mark - UITableViewDataSource
@@ -76,4 +89,15 @@
     return [self.events count];
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.navigationItem.rightBarButtonItem.enabled = [tableView.indexPathsForSelectedRows count] > 0;
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.navigationItem.rightBarButtonItem.enabled = [tableView.indexPathsForSelectedRows count] != 0;
+}
+
 @end
+
